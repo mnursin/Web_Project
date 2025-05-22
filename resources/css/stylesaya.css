@@ -1,0 +1,16 @@
+/* resources/css/stylesaya.css */
+.card-placeholder {
+    border: 1px solid #ccc; /* Replace with valid CSS or configure Tailwind */
+}
+
+.placeholder-pattern-style{
+    border: 1px solid #ccc; /* Replace with valid CSS or configure Tailwind */
+
+}
+
+.main-content-placeholder{
+    border: 1px solid #ccc; /* Replace with valid CSS or configure Tailwind */
+    background-color: #f0f0f0; /* Replace with valid CSS or configure Tailwind */
+    padding: 20px; /* Replace with valid CSS or configure Tailwind */
+    border-radius: 8px; /* Replace with valid CSS or configure Tailwind */
+}
