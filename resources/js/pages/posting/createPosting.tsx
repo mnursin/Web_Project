@@ -13,7 +13,10 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+import { useState } from 'react';
+
 export default function solar() {
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const editorRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         const initializeQuill = async () => {
@@ -58,7 +61,7 @@ export default function solar() {
                 <h1 className="text-2xl font-bold mb-4">Catatan Saya</h1>
                 <div className="mb-4">
                     <label htmlFor="description" className="block text-lg font-large mb-1">
-                        Deskripsi
+                        Description
                     </label>
                     <input
                         type="text"
@@ -70,15 +73,40 @@ export default function solar() {
                 </div>
                 <div className="mb-4">
                     <label htmlFor="category" className="block text-lg font-medium mb-1">
-                        Kategori
+                        Category
                     </label>
-                    <input
-                        type="text"
-                        id="category"
-                        name="category"
-                        className="mt-1 block w-full rounded border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="Masukkan kategori catatan"
-                    />
+                    <div className="flex flex-wrap gap-2">
+                        {[
+                            { value: 'backend', label: 'Backend' },
+                            { value: 'frontend', label: 'Frontend' },
+                            { value: 'mobileApp', label: 'Mobile Apps' },
+                            { value: 'webApp', label: 'Web Apps' },
+                            { value: 'electrical', label: 'Electrical' },
+                            { value: 'IoT', label: 'IoT/firmware' },
+                            { value: 'story', label: 'Story' },
+                            { value: 'other', label: 'Other' },
+                        ].map(option => (
+                            <button
+                                key={option.value}
+                                type="button"
+                                className={`px-3 py-1 rounded border ${
+                                    selectedCategories.includes(option.value)
+                                        ? 'bg-blue-600 text-white border-blue-600'
+                                        : 'bg-white text-gray-700 border-gray-300'
+                                }`}
+                                onClick={() => {
+                                    setSelectedCategories(prev =>
+                                        prev.includes(option.value)
+                                            ? prev.filter(v => v !== option.value)
+                                            : [...prev, option.value]
+                                    );
+                                }}
+                            >
+                                {option.label}
+                            </button>
+                        ))}
+                    </div>
+                    <small className="text-gray-500">Klik untuk memilih/menonaktifkan kategori.</small>
                 </div>
 
                 <div ref={editorRef} className="bg-white rounded shadow p-4 mb-4" style={{ minHeight: '300px' }} />
