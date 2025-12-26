@@ -10,7 +10,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function solar() {
+export default function Resume() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Resume" />

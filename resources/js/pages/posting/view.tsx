@@ -1,7 +1,13 @@
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
-import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
+import AppLayout from "@/layouts/app-layout";
+import { useState } from "react";
+import { type BreadcrumbItem } from "@/types";
+import { FaFilter, FaPlus } from "react-icons/fa";
+import ActionDropdown from "@/components/posting/ActionDropdown";
+import PostCard from "@/components/posting/PostCard";
+import 'D:/Laravel/solar/resources/css/stylesaya.css'
+import FilterDropdown from "@/components/posting/FilterDropdown";
+import AddDropdown from "@/components/posting/AddDropdown";
+
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -9,68 +15,85 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: '/posting/view',
     },
 ];
-
 interface User {
-    id: number;
     name: string;
-  }
-  
-  interface Posting {
+}
+
+interface Posting {
     id_posting: number;
-    content: string;
+    description: string;
     created_at: string;
+    category: string[];
     user: User;
-  }
-  
-  interface Props {
+}
+interface Filters {
+    search?: string;
+    category?: string;
+    user?: string;
+}
+interface ViewPostProps {
     postings: Posting[];
-  }
-
-// export default function solar() {
-//     return (
-//         <AppLayout breadcrumbs={breadcrumbs}>
-//             <Head title="Solars" />
-//             <div className="container mx-auto mt-4">
-//             <h1 className="text-2xl font-bold mb-4">Posting List</h1>
-//             <div id="posting-list">
-//                 {/* Data from controllerPosting's index function will be rendered here */}
-//             </div>
-//             </div>
-//         </AppLayout>
-//     );
-// }
-
-
-export default function solar({ postings }: Props) {
+    filters: Filters;
+}
+export default function ViewPost({ postings, filters }: ViewPostProps) {
+    const [activeAction, setActiveAction] =
+        useState<"filter" | "add" | null>(null);
     return (
-      <AppLayout breadcrumbs={breadcrumbs}>
-        <Head title="Daftar Postingan" />
-  
-        <div className="p-6">
-          <h1 className="text-2xl font-bold mb-4">Daftar Postingan</h1>
-  
-          <div className="space-y-6">
-            {postings.map((post) => (
-              <div
-                key={post.id_posting}
-                className="bg-white shadow rounded p-4 border border-gray-200"
-              >
-                <div className="text-sm text-gray-500 mb-1">
-                  Diposting oleh <strong>{post.user.name}</strong> pada{' '}
-                  {new Date(post.created_at).toLocaleString()}
+        <AppLayout breadcrumbs={breadcrumbs}>
+            <div className="container">
+                <div className="container-header">
+                    <h1 className="header-title">Daftar Postingan</h1>
+
+                    <div className="header-tool">
+                        <div className="tooltip-wrapper" data-tooltip="Filter Data">
+                          <button
+                              className="filter-button"
+                              onClick={() => setActiveAction("filter")}
+                          >
+                              <FaFilter />
+                          </button>
+                        </div>
+
+                        <div className="tooltip-wrapper"data-tooltip="Add New Data">
+                          <button
+                              className="add-button"
+                              onClick={() => setActiveAction("add")}
+                              >
+                              <FaPlus />
+                          </button>
+                          </div>
+                    </div>
                 </div>
-                <div
-                  className="prose max-w-none"
-                  dangerouslySetInnerHTML={{ __html: post.content }}
-                />
-              </div>
-            ))}
-  
-            {postings.length === 0 && (
-              <p className="text-gray-500">Belum ada postingan.</p>
-            )}
-          </div>
-        </div>
-      </AppLayout>
+
+
+                {activeAction && (
+                  <ActionDropdown
+                    title={activeAction === "filter" ? "Filter Post" : "Tambah Post"} onClose={() => setActiveAction(null)}>
+                    {activeAction === "filter" && (
+                        <FilterDropdown
+                            filters={filters}
+                            onSubmitSuccess={() => setActiveAction(null)}/>
+                    )}
+                    {activeAction === "add" && (
+                        <AddDropdown
+                            onSubmitSuccess={() => setActiveAction(null)}/>
+                    )}
+                  </ActionDropdown>
+                )}
+
+
+                
+                    <div className="container-content">
+                    <div className="post-grid">
+                        {postings.map((post) => (
+                            <PostCard key={post.id_posting} post={post} />
+                        ))}
+                    </div>
+                    </div>
+
+            </div>
+        </AppLayout>
     );
-  }
+}
+
+

@@ -26,13 +26,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('posting/posting');
     })->name('posting');
     
+    Route::get('market', function () {
+        return Inertia::render('market/create');
+    })->name('Market');
+    
+    Route::get('/posting/view', [controllerPosting::class, 'index']
+    )->name('postings.index');
+    
     Route::get('posting/createPosting', function () {
         return Inertia::render('posting/createPosting');
     })->name('posting');
     
-    // Route::get('posting/view', function () {
-    //     return Inertia::render('posting/view');
-    // })->name('posting');
 
     Route::get('user/user', function () {
         return Inertia::render('user/user');
@@ -42,8 +46,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/postings', [controllerPosting::class, 'store']);
     });
 
-    Route::get('/posting/view', [controllerPosting::class, 'index'])->name('postings.index');
-    // Route::post('/postings', [controllerPosting::class, 'store'])->name('postings.store');
 });
 
 require __DIR__.'/settings.php';

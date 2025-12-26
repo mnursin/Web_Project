@@ -12,6 +12,8 @@ class Posting extends Model
 
     protected $fillable = [
         'id_user',
+        'category',
+        'description',
         'content',
     ];
 

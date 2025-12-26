@@ -16,21 +16,25 @@ use Inertia\Response;
  */
 class controllerPosting extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request) //mengirim data poasting ke database
     {
         $request->validate([
             'content' => 'required|string',
         ]);
+        // dd($request->input('category'));
+        $categoriesJson = json_encode($request->input('categories', []));
 
         Posting::create([
             'id_user' => Auth::id(),
-            'content' => $request->input('content'),
+            'category' => $categoriesJson,
+            'description' => $request->input('description'),
+            'content' => $request->input('content')
         ]);
 
         return redirect()->back()->with('success', 'Catatan berhasil disimpan.');
     }
 
-    public function index()
+    public function index() //menampilkan data postingan dari database
     {
         $postings = Posting::with('user')->get();
     
@@ -52,6 +56,8 @@ class controllerPosting extends Controller
             'hasPostings' => $hasPostings, // Kirim status ke frontend
         ]);
     }
+
+    
 
 
 }

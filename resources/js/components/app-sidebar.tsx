@@ -4,19 +4,19 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, SquarePen, FileUser, Sun, Store, User, ChartLine} from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
         href: '/dashboard',
-        icon: LayoutGrid,
+        icon: ChartLine,
     },
     {
         title: 'Posting',
         href: '/posting/posting',
-        icon: LayoutGrid,
+        icon: SquarePen ,
         children: [
             {
                 title: 'Views',
@@ -38,12 +38,12 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Resume',
         href: '/resume/resume',
-        icon: LayoutGrid,
+        icon: FileUser ,
     },
     {
         title: 'Solar panels',
         href: '/solar/solar',
-        icon: LayoutGrid,
+        icon: Sun,
         children: [
             {
               title: 'Monitoring',
@@ -58,9 +58,14 @@ const mainNavItems: NavItem[] = [
           ],
     },
     {
+        title: 'market',
+        href: '/market',
+        icon: Store,
+    },
+    {
         title: 'User',
         href: '/user/user',
-        icon: LayoutGrid,
+        icon: User,
     },
 
 ];
