@@ -30,8 +30,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('market/create');
     })->name('Market');
     
-    Route::get('/posting/view', [controllerPosting::class, 'index']
-    )->name('postings.index');
+    Route::get('/posting/view', [controllerPosting::class, 'index'])
+    ->name('posting.index');
+
+    // Route::get('/posting', [ControllerPosting::class, 'index'])
+    // ->name('posting.index');
     
     Route::get('posting/createPosting', function () {
         return Inertia::render('posting/createPosting');
@@ -42,9 +45,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('user/user');
     })->name('user');
 
-    Route::middleware('auth')->group(function () {
-        Route::post('/postings', [controllerPosting::class, 'store']);
-    });
+    Route::delete('/posting/{posting}', [controllerPosting::class, 'destroy'])
+    ->name('posting.destroy');
+
+    Route::put('/posting/{posting}', [controllerPosting::class, 'update'])
+    ->name('posting.update');
+
+    // Route::middleware('auth')->group(function () {
+    //     Route::post('/postings', [controllerPosting::class, 'store']);
+    // });
+
+Route::post('/posting/view', [controllerPosting::class, 'store'])
+    ->middleware('auth')
+    ->name('posting.store');
 
 });
 

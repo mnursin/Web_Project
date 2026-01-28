@@ -26,7 +26,7 @@
     grid: auto;
 }
 
-#description_post_input{
+/* #description_post_input{
    background-color: #ffffff;
    border-width: 0.5px;
    border-radius: 10px;
@@ -35,7 +35,42 @@
    width: 100%;
    max-width: 100%;
    margin-right: 6px;
+  } */
+  
+  .input_form{
+    background-color: #c6c6c6;
+    border-width: 0.5px;
+    border-radius: 10px;
+    border-color: #bebebe;
+    color:rgb(0, 0, 0);
+    font-size: large;
+    /* font-weight:2px; */
+    padding: 2px 10px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0px 5px 15px 0px;
+  }
+  
+  .select_form{
+  background-color: #c6c6c6;
+  border-width: 0.5px;
+  border-radius: 10px;
+  border-color: #bebebe;
+  color:rgb(0, 0, 0);
+  font-size: large;
+  /* font-weight:2px; */
+  padding: 2px 10px;
+  width: 50%;
+  margin: 0px 5px 15px 0px;
+
 }
+
+.filter_type{
+  columns: 2;
+  column-gap: 20px;
+  
+}
+
 
 .container {
   padding: 0px;
@@ -135,6 +170,15 @@ background: #262626; /* Sesuai gambar dark mode kamu */
 
 
 
+
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+} 
+
+
 .card-header {
   font-size: 0.8rem;
   color: #ffffff;
@@ -206,7 +250,8 @@ background: #262626; /* Sesuai gambar dark mode kamu */
 
 .drop-down-action{
   position: absolute;
-  z-index: 1;
+  display: grid;
+  grid-template-rows: 50px 1fr 50px;
   background-color: #262626;
   border-color: #e60000;
   border-width: 2px;
@@ -214,15 +259,30 @@ background: #262626; /* Sesuai gambar dark mode kamu */
   width: 70%;
   height: 70%;  
   left: 15%;
+  z-index: 10;
 }
 
 .dropdown-header{
  font-size: xx-large;
-margin: auto;
+ position: relative;
  color: #007bff;
-
 }
 
+.dropdown-content{
+  padding: 0px 20px;
+  max-height: calc(100% - 10px); /* Mengurangi tinggi header dan tombol */
+  overflow-y: auto;
+}
+
+.dropdown-footer{
+  position: relative;
+  width: 100%;
+}
+
+
+.dropdown-title{
+  text-align: center;  
+}
 
 .close-button{
   position: absolute;
@@ -230,14 +290,10 @@ margin: auto;
   font-size: 1.5rem;
   cursor: pointer;
   padding: 10px;
-  top : 10px;
-  right: 10px;
-  
+  top : 5px;
+  right: 5px;
 }
-.dropdown-title{
-  text-align: center;
 
-}
 
 
 .close-button:hover{
@@ -247,11 +303,11 @@ margin: auto;
 }
 
 .submit-button{
-  position: inherit;
+  position: absolute;
   background-color: #03c300;
   border-radius: 10px;
   padding: 5px 15px;
-  bottom: 20px;
+  bottom: 10px;
   right: 20px;
   font-size: larger;
 }
@@ -260,40 +316,221 @@ margin: auto;
   background-color: #035402;
 }
 
-
-
-
-
-/* Tombol Filter */
-.filter-buttonsssssssssssss {
-  display: flex; 
-  cursor: pointer;
-  align-items: center;
-  gap: 8px; /* Jarak antara ikon dan teks */
-  padding: 0.2rem 1rem; 
-  background-color: #007bff; /* Warna biru */
-  color: white; 
-  border-radius: 5px;
-  border-radius: 100%; /* rounded-full */
-  justify-content: center;
-  margin-bottom: 20px; /* Jarak dari grid */
-  /* font-size: 1rem; */
-  /* transition: background-color 0.2s ease; */
+.content_text{
+  border: #bebebe 0.5px solid;
+  background-color: #ccc;
+  color: rgb(24, 24, 24);
+  border-radius: 10px;
+  font-size: larger;
 }
- .buttonAddssssssssssssssssssss{
-    display: flex;
-    align-items: center;
-    gap: 0.5; /* space-x-2 */
-    padding: 0.2rem 1rem; 
-    background-color: #2563eb; /* bg-blue-600 */
+
+
+#label-desc{
+  margin-right: 30px;
+}
+
+
+.filter-active {
+    background: #070064; /* blue-600 */
     color: white;
-    font-size:30px;
-    font-weight: 600; /* font-semibold */
-    border-radius: 100%; /* rounded-full */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
-    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* transition ease-in-out duration-300 */
-    border: none; /* Menghilangkan border default button */
-    cursor: pointer; } 
+    box-shadow: 0 0 0 2px 070064(37,99,235,0.4);
+}
+
+.filter-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: #dc2626; /* red-600 */
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 999px;
+}
 
 
-    
+.filter-button {
+    position: relative;
+}
+
+.filter-button.active {
+    background-color: #e60000;
+    color: white;
+      border-radius: 100%;
+  padding: 10px;
+}
+
+.filter-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #f97316;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+
+.filtered-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: inherit;
+    border-left: 4px solid #2563eb;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    margin-left: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #d6d6d6;
+}
+
+.filtered-text strong {
+    color: white;
+}
+
+.reset-filter-inline {
+    background: transparent;
+    border: none;
+    color: #dc2626;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.reset-filter-inline:hover {
+    background: #fee2e2;
+}
+
+.post-detail {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.detail-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.detail-meta {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.detail-content {
+    margin-top: 16px;
+    line-height: 1.6;
+}
+
+
+.ellipsis{
+  position:  absolute;
+  top: 5px;
+  right: 5px;
+  color: white;
+  cursor: pointer;
+
+}
+
+.ellipsis-wrapper {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+/* .ellipsis {
+    width: 18px;
+    height: 18px;
+    color: #64748b;
+} */
+
+.card-menu {
+    position: absolute;
+    top: 36px;
+    right: 10px;
+    background: inherit;
+    border: 1px solid red;
+    border-radius: 8px;
+    min-width: 120px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    z-index: 20;
+  }
+  
+  .menu-item {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    text-align: left;
+    background: inherit;
+    border: none;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .menu-item:hover {
+  border-radius: 8px;
+  background: #929292;
+  color: black;
+  /* font-weight: bold; */
+}
+
+.menu-item.danger {
+  border-radius: 8px;
+  color: white;
+}
+
+.menu-item.danger:hover {
+  border-radius: 8px;
+    background: #fee2e2;
+    color: black;
+}
+
+.buttonDelete{
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+
+
+
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="10px"]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value="10px"]::before {
+    content: "10px";
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="11px"]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value="11px"]::before {
+    content: "11px";
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="12px"]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value="12px"]::before {
+    content: "12px";
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="14px"]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value="14px"]::before {
+    content: "14px";
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="16px"]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value="16px"]::before {
+    content: "16px";
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="18px"]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value="18px"]::before {
+    content: "18px";
+}

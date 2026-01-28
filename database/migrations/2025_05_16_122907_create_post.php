@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('postings', function (Blueprint $table) {
             $table->id('id_posting'); // Primary key
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
-            $table->longText('content');
+            $table->mediumText('content');
+            $table->mediumText('description'); // Tambah kolom description
             $table->timestamps(); // created_at & updated_at
             $table->softDeletes(); // deleted_at
         });

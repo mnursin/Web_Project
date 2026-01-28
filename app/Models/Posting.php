@@ -12,13 +12,25 @@ class Posting extends Model
 
     protected $fillable = [
         'id_user',
-        'category',
         'description',
         'content',
     ];
-
+        // ✅ Relasi ke user
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(
+            CategoryPosting::class,
+            'category_posting_pivot',
+            'posting_id',     // FK pivot ke posting
+            'category_id',    // FK pivot ke category
+            'id_posting',     // PK posting
+            'id'              // PK category
+        );
+    }
+   
 }
