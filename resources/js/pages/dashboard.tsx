@@ -3,6 +3,7 @@ import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 
+{/* <Head title="Dashboard | Solar Panel Monitoring" /> */}
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Dashboard',

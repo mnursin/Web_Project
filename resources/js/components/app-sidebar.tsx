@@ -15,25 +15,25 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Posting',
-        href: '/posting/posting',
+        href: '/posting/view',
         icon: SquarePen ,
-        children: [
-            {
-                title: 'Views',
-                href: '/posting/view',
-                icon: LayoutGrid,
-            },
-            {
-              title: 'Create',
-              href: '/posting/createPosting',
-              icon: LayoutGrid,
-            },
-            {
-              title: 'Pengaturan',
-              href: '/solar/settings',
-              icon: LayoutGrid,
-            },
-          ],
+        // children: [
+        //     {
+        //         title: 'Views',
+        //         href: '/posting/view',
+        //         icon: LayoutGrid,
+        //     },
+        //     {
+        //       title: 'Create',
+        //       href: '/posting/createPosting',
+        //       icon: LayoutGrid,
+        //     },
+        //     {
+        //       title: 'Pengaturan',
+        //       href: '/solar/settings',
+        //       icon: LayoutGrid,
+        //     },
+        //   ],
     },
     {
         title: 'Resume',

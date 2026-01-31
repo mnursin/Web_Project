@@ -7,13 +7,14 @@ import PostCard from "@/components/posting/PostCard";
 import 'D:/Laravel/solar/resources/css/stylesaya.css'
 import FilterDropdown from "@/components/posting/FilterDropdown";
 import AddDropdown from "@/components/posting/AddDropdown";
-import { router } from "@inertiajs/react";
+import { Head, router } from "@inertiajs/react";
 import PostDetail from "@/components/posting/postDetail";
 
+{/* <Head title="Posting | Create | Solar Panel Monitoring" /> */}
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'View Posting',
+        title: 'Posting',
         href: '/posting/view',
     },
 ];
@@ -43,6 +44,8 @@ interface ViewPostProps {
     filters: Filters;
     categories: Categories[];
 }
+
+
 export default function ViewPost({ postings, filters, categories }: ViewPostProps) {
     const [activeAction, setActiveAction] = useState<"filter" | "add" | "edit" |"detail"| null>(null);
         const [isFiltered, setIsFiltered] = useState(false);
@@ -74,6 +77,7 @@ export default function ViewPost({ postings, filters, categories }: ViewPostProp
     }
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
+            <Head title="Posting" />
             <div className="container">
                 <div className="container-header">
                     <h1 className="header-title">Daftar Postingan</h1>
